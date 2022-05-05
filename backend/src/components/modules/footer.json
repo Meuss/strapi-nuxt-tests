@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_modules_footers",
+  "info": {
+    "displayName": "Footer",
+    "icon": "angle-double-down"
+  },
+  "options": {},
+  "attributes": {
+    "TextField": {
+      "type": "string"
+    }
+  }
+}

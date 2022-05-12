@@ -1,15 +1,17 @@
-<template>
-  <div class="page-index">
-    <h1>{{ homepage.data.attributes.Title }}</h1>
-    <Markdown :content="homepage.data.attributes.Content" />
-  </div>
-</template>
-
 <script setup>
-definePageMeta({
-  layout: 'custom'
-})
 const { find } = useStrapi4()
 
-const homepage = await find('homepage')
+const { data: homepage } = await find('homepage?populate[Block][populate]=*')
+useHead({
+  title: 'Homepage'
+})
 </script>
+
+<template>
+  <div class="page">
+    <BlockZone :blocks="homepage.attributes.Block" />
+    <div class="page-content container mx-auto">
+      <Markdown :content="homepage.attributes.Content" />
+    </div>
+  </div>
+</template>

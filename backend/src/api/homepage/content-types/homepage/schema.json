@@ -4,18 +4,46 @@
   "info": {
     "singularName": "homepage",
     "pluralName": "homepages",
-    "displayName": "Homepage"
+    "displayName": "Homepage",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "Title": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "Content": {
-      "type": "richtext"
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "Block": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "modules.hero",
+        "modules.latest-articles",
+        "modules.all-testimonials"
+      ]
     }
   }
 }

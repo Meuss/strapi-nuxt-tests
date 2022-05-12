@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_modules_all_testimonials",
+  "info": {
+    "displayName": "All Testimonials",
+    "icon": "skull",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Subtitle": {
+      "type": "string"
+    }
+  }
+}

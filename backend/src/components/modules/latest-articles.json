@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_modules_latest_articles",
+  "info": {
+    "displayName": "Latest Articles",
+    "icon": "address-card"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

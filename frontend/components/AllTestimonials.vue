@@ -61,7 +61,7 @@ const modules = [EffectFade, Navigation, Pagination]
           <div class="quotes text-5xl font-bold text-red-500">“</div>
         </div>
         <div
-          :style="`background-image: url(http://localhost:1337${testimonial.attributes.Image.data.attributes.url})`"
+          :style="`background-image: url(${testimonial.attributes.Image.data.attributes.url})`"
           class="image rounded-2xl ml-5"
         ></div>
       </swiper-slide>

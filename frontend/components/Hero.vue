@@ -10,7 +10,7 @@ const props = defineProps({
       <Markdown :content="block.Content" />
     </div>
     <img
-      :src="`http://localhost:1337${block.Image.data.attributes.url}`"
+      :src="`${block.Image.data.attributes.url}`"
       :alt="block.Image.data.attributes.name"
       class="absolute -right-20 top-0 -z-10 h-full"
     />

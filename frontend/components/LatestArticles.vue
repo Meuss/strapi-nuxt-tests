@@ -5,8 +5,33 @@ const props = defineProps({
 })
 const { find } = useStrapi4()
 const { data: articles } = await find('articles?sort[0]=publishedAt:desc&populate=*')
-
+const featuredArticles = articles.slice(0, 2)
+const otherArticles = articles.slice(2)
 const blockIndex = useBlockIndex(props.index)
+
+const { $gsap } = useNuxtApp()
+const nuxtApp = useNuxtApp()
+nuxtApp.hook('page:finish', () => {
+  // $gsap.to('.latest-articles', { rotate: '360deg', duration: 40 })
+  $gsap.utils.toArray('article').forEach((article) => {
+    $gsap.fromTo(
+      article,
+      {
+        autoAlpha: 0,
+        y: 30
+      },
+      {
+        scrollTrigger: {
+          trigger: article,
+          once: true
+        },
+        duration: 1,
+        autoAlpha: 1,
+        y: 0
+      }
+    )
+  })
+})
 </script>
 <template>
   <div class="latest-articles container mx-auto mb-20">
@@ -17,17 +42,30 @@ const blockIndex = useBlockIndex(props.index)
       </h2>
       <h3 class="text-2xl font-bold mb-10 text-red-500">{{ block.Subtitle }}</h3>
     </div>
-    <div class="featured-articles mb-10">
-      <article v-for="(a, index) in articles" :key="`article-${index}`" :class="`article-${index}`">
-        <img
-          v-if="index < 2"
-          :src="`http://localhost:1337${a.attributes.Image.data.attributes.url}`"
+    <div class="articles-wrapper mb-10">
+      <article
+        v-for="(a, index) in featuredArticles"
+        :key="`article-${index}`"
+        :class="`article-${index}`"
+      >
+        <div
+          :style="`background-image: url(${a.attributes.Image.data.attributes.url})`"
           :alt="a.attributes.Image.data.attributes.name"
-          class="mb-10 rounded-2xl aspect-[4/3]"
-        />
-        <h3 class="text-xl font-bold mb-10">{{ a.attributes.Title }}</h3>
+          class="image mb-10 rounded-2xl aspect-[4/3]"
+        ></div>
+        <h3 class="text-xl font-bold mb-3">{{ a.attributes.Title }}</h3>
         <Markdown :content="a.attributes.Content" />
       </article>
+      <div class="other-articles mb-10">
+        <article
+          v-for="(a, index) in otherArticles"
+          :key="`article-${index}`"
+          :class="`article-${index} mb-10`"
+        >
+          <h3 class="text-xl font-bold mb-3">{{ a.attributes.Title }}</h3>
+          <Markdown :content="a.attributes.Content" />
+        </article>
+      </div>
     </div>
     <a href="#" class="text-white bg-red-500 inline-block px-7 py-2 uppercase font-bold rounded-3xl"
       >Voir les articles</a
@@ -36,9 +74,19 @@ const blockIndex = useBlockIndex(props.index)
 </template>
 
 <style lang="scss" scoped>
-.featured-articles {
+.articles-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 40px;
+}
+.featured-articles {
+  grid-column: 1 / span 2;
+  // grid-gap: 40px;
+}
+.image {
+  background-size: cover;
+}
+.article-3 {
+  grid-column: 3;
 }
 </style>

@@ -10,8 +10,13 @@ const blockIndex = useBlockIndex(props.index)
 </script>
 <template>
   <div class="latest-articles container mx-auto mb-20">
-    <h2 class="text-5xl font-medium mb-10">{{ blockIndex }}</h2>
-    <h2 class="text-5xl font-bold mb-10">{{ block.Title }}</h2>
+    <div class="section-title">
+      <h2 class="text-5xl font-bold mb-10">
+        <span class="block-index">{{ blockIndex }}</span>
+        {{ block.Title }}
+      </h2>
+      <h3 class="text-2xl font-bold mb-10 text-red-500">{{ block.Subtitle }}</h3>
+    </div>
     <div class="featured-articles mb-10">
       <article v-for="(a, index) in articles" :key="`article-${index}`" :class="`article-${index}`">
         <img

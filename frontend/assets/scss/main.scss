@@ -1,3 +1,15 @@
 h1 {
   font-size: 2em;
 }
+.section-title {
+  position: relative;
+}
+.block-index {
+  font-size: 7rem;
+  font-weight: bold;
+  position: absolute;
+  transform: translateX(-50px);
+  z-index: -1;
+  color: #f6f6f6;
+  top: -55px;
+}

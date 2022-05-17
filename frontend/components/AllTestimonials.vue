@@ -24,8 +24,8 @@ const modules = [EffectFade, Navigation, Pagination]
 </script>
 <template>
   <div class="all-testimonials container mx-auto mb-20">
-    <div class="circle"></div>
-    <div class="section-title text-center">
+    <div class="circle scroll-fade"></div>
+    <div class="section-title text-center scroll-fade">
       <h2 class="text-5xl font-bold mb-10">
         <span class="block-index">{{ blockIndex }}</span>
         {{ block.Title }}
@@ -38,15 +38,11 @@ const modules = [EffectFade, Navigation, Pagination]
       :effect="'fade'"
       :navigation="true"
       :fadeEffect="{ crossFade: true }"
-      :speed="250"
-      :autoplay="{
-        delay: 3000
-      }"
-      :loop="true"
       :pagination="{
         type: 'fraction'
       }"
       :modules="modules"
+      class="scroll-fade"
     >
       <swiper-slide
         v-for="(testimonial, index) in testimonials"
@@ -66,7 +62,9 @@ const modules = [EffectFade, Navigation, Pagination]
         ></div>
       </swiper-slide>
     </swiper>
-    <a href="#" class="text-white bg-red-500 inline-block px-7 py-2 uppercase font-bold rounded-3xl"
+    <a
+      href="#"
+      class="text-white bg-red-500 inline-block px-7 py-2 uppercase font-bold rounded-3xl scroll-fade"
       >Voir les témoignages</a
     >
   </div>

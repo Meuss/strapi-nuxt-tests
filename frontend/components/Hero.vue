@@ -4,7 +4,7 @@ const props = defineProps({
 })
 </script>
 <template>
-  <div class="hero relative mt-5 mb-20 container mx-auto columns-1">
+  <div class="hero relative mt-5 mb-20 container mx-auto columns-1 scroll-fade">
     <div class="w-1/2">
       <h1 class="mb-10 mt-20 text-5xl font-bold">{{ block.Title }}</h1>
       <Markdown :content="block.Content" />

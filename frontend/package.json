@@ -12,6 +12,7 @@
     "nuxt": "3.0.0-rc.1"
   },
   "dependencies": {
+    "cloudinary-vue": "^1.2.4",
     "gsap": "npm:@gsap/shockingly",
     "sass": "^1.51.0",
     "sass-loader": "^12.6.0",

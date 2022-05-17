@@ -8,35 +8,11 @@ const { data: articles } = await find('articles?sort[0]=publishedAt:desc&populat
 const featuredArticles = articles.slice(0, 2)
 const otherArticles = articles.slice(2)
 const blockIndex = useBlockIndex(props.index)
-
-const { $gsap } = useNuxtApp()
-const nuxtApp = useNuxtApp()
-nuxtApp.hook('page:finish', () => {
-  // $gsap.to('.latest-articles', { rotate: '360deg', duration: 40 })
-  $gsap.utils.toArray('article').forEach((article) => {
-    $gsap.fromTo(
-      article,
-      {
-        autoAlpha: 0,
-        y: 30
-      },
-      {
-        scrollTrigger: {
-          trigger: article,
-          once: true
-        },
-        duration: 1,
-        autoAlpha: 1,
-        y: 0
-      }
-    )
-  })
-})
 </script>
 <template>
   <div class="latest-articles container mx-auto mb-20">
     <div class="section-title">
-      <h2 class="text-5xl font-bold mb-10">
+      <h2 class="text-5xl font-bold mb-10 scroll-fade">
         <span class="block-index">{{ blockIndex }}</span>
         {{ block.Title }}
       </h2>
@@ -46,7 +22,7 @@ nuxtApp.hook('page:finish', () => {
       <article
         v-for="(a, index) in featuredArticles"
         :key="`article-${index}`"
-        :class="`article-${index}`"
+        :class="`article-${index} scroll-fade`"
       >
         <div
           :style="`background-image: url(${a.attributes.Image.data.attributes.url})`"
@@ -60,7 +36,7 @@ nuxtApp.hook('page:finish', () => {
         <article
           v-for="(a, index) in otherArticles"
           :key="`article-${index}`"
-          :class="`article-${index} mb-10`"
+          :class="`article-${index} mb-10 scroll-fade`"
         >
           <h3 class="text-xl font-bold mb-3">{{ a.attributes.Title }}</h3>
           <Markdown :content="a.attributes.Content" />

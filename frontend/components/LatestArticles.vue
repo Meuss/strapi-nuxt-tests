@@ -30,6 +30,12 @@ const blockIndex = useBlockIndex(props.index)
           class="image mb-10 rounded-2xl aspect-[4/3]"
         ></div>
         <h3 class="text-xl font-bold mb-3">{{ a.attributes.Title }}</h3>
+        <h3 class="text-lg font-bold mb-3 text-red-500">
+          <span v-for="(cat, i) in a.attributes.article_categories.data" :key="`category-${i}`">
+            #{{ cat.attributes.Type
+            }}<span v-if="i + 1 < a.attributes.article_categories.data.length">, </span>
+          </span>
+        </h3>
         <Markdown :content="a.attributes.Content" />
       </article>
       <div class="other-articles mb-10">
